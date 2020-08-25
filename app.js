@@ -25,7 +25,9 @@ const { registration,
 //extractTable();
 
 
+//const { order } = require('./eatos/test')
 const { order } = require('./eatos/order')
+//const { order } = require('./eatos/app')
 
 order();
 

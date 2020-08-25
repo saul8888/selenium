@@ -30,7 +30,7 @@ async function order() {
 
         //---buy element--//
         await driver.sleep(2000)
-        await driver.findElement(By.xpath("html/body/app-root/app-categoryv2/div")).click();
+        await driver.findElement(By.xpath("/html/body/app-root/app-categoryv2/div/div/checkout-mobile/div/div/div")).click();
 
         await driver.get("https://eatoscafe.orderos.co/checkout");
         //--date customer--//
@@ -58,8 +58,21 @@ async function order() {
         await driver.findElement(By.id("mat-input-15")).sendKeys("Chorrillos");
         await driver.findElement(By.id("mat-input-16")).sendKeys("Nueva Caledonia");
         await driver.findElement(By.id("mat-input-17")).sendKeys("15081");
-        await driver.findElement(By.id("mat-input-17")).sendKeys("Lion");
+        //await driver.findElement(By.id("mat-input-17")).sendKeys("Lion");
+        
+        await driver.findElement(By.xpath("//*[@id='payments-Mobile']/div/div[1]")).click();
 
+        iframeElement = await driver.findElement(By.name("__privateStripeFrame5"))
+        //cardElement = await driver.findElement(By.name("cardnumber"))
+        
+        console.log(iframeElement)
+        await driver.switchTo().frame(iframeElement)
+        //await cardElement.send_keys("4111 1111 1111 1111")
+        await driver.switchTo().defaultContent();
+        //cardElement = await driver.findElement(By.name("cardnumber"))
+        //await driver.findElement(By.xpath("//*[@id='root']/form/span[2]/div/div[2]/span/input")).click();
+
+        
     } catch (error) {
         console.log(error)
     }
@@ -69,3 +82,6 @@ async function order() {
 module.exports = {
     order
 }
+
+
+
